@@ -1,0 +1,328 @@
+notes
+
+constructors and destructors
+classes have two types of special methods, called constructors and destructors.
+a constructor allocates memory for new instances of a class and can initialize the object’s data to specified values.
+a destructor destroys an instance of a class when the object’s lifetime ends.
+once you define a destructor, the compiler does not create any of its own.
+
+Inspection Prompts
+The status of the following is printed on the screen
+
+1.  Is the elevator empty?
+        
+        "The elevator is empty.\n"
+        "The elevator is not empty.\n"
+        
+2.  Who will be the next to get off the elevator?
+
+        this_human << " will be the next person to leave the elevator.\n"
+        
+3.  Who will be the next person to get on the elevator?
+
+    std::cout << this_human << " will be the next person to leave the elevator"
+        
+
+
+Inspection Notes
+
+1.  Is the elevator empty?
+
+    - check isEmpty for the Elevator stack.
+    - Stack<std::string> Elevator;
+    - Elevator.isEmpty();
+
+2.  Who will be the next to get off the elevator?
+    
+    - STACK DETERMINED LIFO
+    - the last person to have gotten on the elevator will be the first person to get off
+    - check m_top of the stack,
+    - whomever is on the top of the stack will be the human that will be the first to get off the elevator.
+    
+3.  Who will be the next person to get on the elevator?
+
+    - QUEUE DETERMINED FIFO
+    - First in line is the first to get out of line
+    - Queue<std::string> Line;
+    - Line.dequeue();
+    - front_node_ptr -> getEntry() will be deleted from the queue.
+    
+    
+*/
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+lab4:  main.o Executive.o
+    g++ -g -std=c++11 -Wall main.o Executive.o -o lab4
+    
+main.o:  main.cpp Node.h Node.hpp Queue.h Queue.hpp Stack.h Stack.hpp Executive.h
+    g++ -g -std=c++11 -Wall -c main.cpp
+    
+Executive.o:  Executive.cpp Executive.h
+    g++ -std=c++11 -g -Wall -c Executive.cpp
+    
+clean:
+    rm *.o lab4
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#include "Queue.h"
+#include "Stack.h"
+#include "Executive.h"
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <stdexcept>
+
+Executive::Executive(){
+    file_name = "input.txt";
+}
+
+//when in use always call with try catch block
+void Executive::fileIO() {
+    
+    //declared variables
+    std::ifstream inStream;
+    std::string command;
+    std::string name;
+    int numppl = 0;
+    int line_size = 0;
+    int elevator_size = 0;
+    Queue<std::string> Line;
+    Stack<std::string> Elevator;
+    
+    inStream.open(file_name);
+    if (!inStream.is_open()) {
+        throw (std::runtime_error("File was not opened!"));
+    } else {
+        while (inStream >> command) {
+            if (command == "WAIT" ) {
+                std::cout << command << " ";
+                inStream >> name;
+                std::cout << name << std::endl;
+                Line.enqueue(name);
+                line_size++;
+                std::cout << "      line size " << line_size << std::endl;
+                std::cout << "      elevator size " << elevator_size << std::endl;
+                std::cout << "      ";
+                try {
+                    std::cout << Line.peekBack() << " has been added to back the line" << std::endl;
+                    std::cout << "      ";
+                    std::cout << Line.peekFront() << " is at the front of the line\n" << std::endl;
+                } catch (std::runtime_error &e) {
+                    std::cerr << e.what() << std::endl;
+                }
+                
+            } else if (command == "PICK_UP") {
+                
+                std::cout << command << std::endl;
+                
+                std::cout << "      before pick up:" << std::endl;
+                std::cout << "      elevator size " << elevator_size << std::endl;
+                std::cout << "      line size " << line_size << std::endl;
+                
+                if (Line.isEmpty()) {
+                    throw (std::runtime_error("Not enough people in line to pick up.\n"));
+                } else {
+                    try {
+                        if (line_size <= 7) {
+                            for (int i = 0; i < line_size; i++) {
+                                std::cout << "      " << Line.peekFront() << " is at the front of the line" << std::endl;
+                                Elevator.push(Line.peekFront());
+                                std::cout << "      " << Elevator.peek() << " is now in the elevator" << std::endl;
+                                Line.dequeue();
+                                line_size--;
+                                elevator_size++;
+                            }
+                        } else {
+                            for (int i = 0; i < 7; i++) {
+                                std::cout << "      " << Line.peekFront() << " is at the front of the line" << std::endl;
+                                Elevator.push(Line.peekFront());
+                                std::cout << "      " << Elevator.peek() << " is now in the elevator" << std::endl;
+                                Line.dequeue();
+                                line_size--;
+                                elevator_size++;
+                            }
+                        }
+                    } catch (std::exception &e) {
+                        std::cerr << e.what() << std::endl;
+                    }
+                }
+                
+                std::cout << "      after pick up:" << std::endl;
+                std::cout << "      elevator size " << elevator_size << std::endl;
+                std::cout << "      line size " << line_size << std::endl;
+                std::cout << std::endl;
+                
+            } else if (command == "DROP_OFF") {
+                
+                try {
+                    inStream >> numppl;
+                    std::cout << command << " " << numppl << std::endl;
+                    for (int i = 0; i < numppl; i++) {
+                        if (Elevator.isEmpty()) {
+                            throw (std::runtime_error("Not enough people in the elevator to drop off.\n"));
+                        }
+                        Elevator.pop();
+                        elevator_size--;
+                    }
+                } catch (std::runtime_error& e) {
+                    std::cout << e.what() << std::endl;
+                }
+                
+                std::cout << "      elevator size " << elevator_size << std::endl;
+                std::cout << "      line size " << line_size << std::endl;
+                
+            } else if (command == "INSPECTION") {
+                
+                std::cout << command << std::endl;
+                
+                std::cout << "      Elevator status:" << std::endl;
+                std::cout << "      line size " << line_size << std::endl;
+                std::cout << "      elevator size " << elevator_size << std::endl;
+                
+                if (Elevator.isEmpty()) {
+                    std::cout << "      The elevator is empty." << std::endl;
+                    std::cout << "      No one is in the elevator." << std::endl;
+                } else {
+                    std::cout << "      The elevator is not empty." << std::endl;
+                    try {
+                        std::cout << "      ";
+                        std::cout << Elevator.peek() << " will be the next person to leave the elevator." << std::endl;
+                    } catch (std::exception &e) {
+                        std::cerr << e.what() << std::endl;
+                    }
+                }
+                
+                if (Line.isEmpty()) {
+                    std::cout << "      No one is in line.\n" << std::endl;
+                } else {
+                    std::cout << "      ";
+                    std::cout << Line.peekFront() << " will be the next person to get on the elevator." << std::endl;
+                    std::cout << "________________________________________" << std::endl;
+                }
+                std::cout << std::endl;
+            } else {
+                exit(1);
+            }
+        }
+        
+    }
+    
+    inStream.close();
+    
+}
+
+
+
+void Executive::run(){
+    
+    std::ifstream file;
+    file.open(file_name);
+    if (!file.is_open()) {
+        throw (std::runtime_error("File was not opened!"));
+    }
+    Stack<std::string> Elevator;
+    Queue<std::string> Line;
+    std::string temp;
+    int numppl = 0;
+    
+    while (file >> temp) {
+        if (temp == "WAIT") {
+            file >> temp;
+            Line.enqueue(temp);
+        } else if (temp == "PICK_UP") {
+            try {
+                file >> numppl;
+                for (int i = 0; i < numppl; i++) {
+                    if (Line.isEmpty()) {
+                        throw (std::runtime_error("Not enough people in line to pick up.\n"));
+                    }
+                    Elevator.push(Line.peekFront());
+                    Line.dequeue();
+                }
+            } catch (std::runtime_error& rte) {
+                std::cout << rte.what() << std::endl;
+            }
+        } else if (temp == "DROP_OFF") {
+            try {
+                file >> numppl;
+                for (int i = 0; i < numppl; i++) {
+                    if (Elevator.isEmpty()) {
+                        throw (std::runtime_error("Not enough people in the elevator to drop off.\n"));
+                    }
+                    Elevator.pop();
+                }
+            } catch (std::runtime_error& rte) {
+                std::cout << rte.what() << std::endl;
+            }
+        } else if (temp == "INSPECTION") {
+            std::cout << "\nElevator Status:\n";
+            
+            if (Elevator.isEmpty()) {
+                std::cout << "The elevator is empty" << std::endl;
+                std::cout << "No one is in the elevator" << std::endl;
+            } else {
+                std::cout << "The elevator is not empty" << std::endl;
+                try {
+                    std::cout << Elevator.peek() << " will be the next person to leave the elevator." << std::endl;
+                } catch (std::runtime_error& rte) {
+                    std::cout << rte.what();
+                }
+            }
+            
+            if (Line.isEmpty()) {
+                std::cout << "No one is in line." << std::endl;
+            } else {
+                try {
+                    std::cout << Line.peekFront() << " will be the next person to get on the elevator." << std::endl;
+                } catch (std::runtime_error& rte) {
+                    std::cout << rte.what() << std::endl;
+                }
+            }
+            
+        }
+    }
+    file.close();
+    
+}
+
+
+
+        
+        
+        
+
+    

@@ -1,0 +1,50 @@
+EECS 268 Lab 5
+
+Chapter 8 Lists
+Specifying the ADT list
+Using the List Operations
+An Interface Template for the ADT list
+
+
+Summary
+1. The ADT list mainatins its data by position.
+    Each entry in a list is identified by its position, which is given by an integer, beginning with 1.
+    
+    
+Axioms for the ADT list
+
+(new List()).isEmpty() = true
+
+(new List()).getLength() = 0;
+
+aList.getLength() = (aList.insert(i, x)).getLength() - 1
+
+aList.getLength() = (aList.remove(i)).getLength + 1
+
+(aList.insert(i, item)).isEmpty() = false
+
+(new List()).remove(i)) = false
+
+(aList.insert(i, x)).getEntry(i) = x
+
+aList.getEntry(i) = (aList.insert(i, x)).getEntry(i + 1)
+
+aList.getEntry(i + 1) = (aList.remove(i)).getEntry(i)
+
+(new List()).setEntry(i, x) = error
+
+(aList.setEntry(i, x)).getEntry(i) = x
+
+
+Precondition and Postcondition restrictions
+
+1 <= position <= getLength() + 1
+
+1 <= position <= getLength() - 1
+
+
+The ADT list maintains its data by position. Each entry in a list is identified by its position, which is given by an integer, beginning with 1. Thus, the data in a list has an order, but that order is determined by the list’s client, not the list itself.
+You can insert a new entry into a list at a position that ranges from 1 to 1 greater than the current length of the list. Thus, you can insert a new entry before the first entry, after the last entry, or between two current entries.
+Inserting a new entry into a list renumbers any existing entries that follow the new one in the list.
+You can remove an entry that is currently at a position that ranges from 1 to the current length of the list. Thus, you can remove the first entry, the last entry, or any interior entry.
+Removing an entry from a list renumbers any existing entries that follow the deleted one in the list.

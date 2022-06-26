@@ -1,0 +1,18 @@
+/*
+ *
+ * @file:       Executive.cpp
+ * @author:     Morgan Bergen
+ * @assignment: EECS-268 Lab 2
+ * @brief:
+ 
+ Executive class will be responsible for:
+ - reading from the input.txt
+ - it will create the ShapeContainer object of a given size.
+ - reading the command from the file
+ - creating the particular shape object(circle, rectangle, or triangle.
+ - creating the objects according to the given commands
+ 
+ * @date:       Mon Sep 26 10:15:48 CDT 2021
+ *
+ */
+

@@ -1,0 +1,77 @@
+EECS 268 Programming II
+Fall 2021
+Final Exam
+
+When: 10:30am - 1:00pm Wednesday Dec 15th
+Where:  Here
+
+
+Format
+- Conceptual
+- Visualization
+- Code writing
+
+Topics
+- Everything C++ related
+- Midterm topics
+- Recursion
+	- Mimic a loop
+	- recursive functions that return values
+	- Factorial, Summation, Palindrome, use recursion to step throught the array
+- Recursion with backtracking
+	- N-Queens problem
+	- Maze Walkng
+	- Blob Lab
+- Complexity
+	- Space and time complexity
+	- Big-O
+	- Talk about the complexities of methods we've written
+	- Sorts
+		- Iterative Sorts:  Bubble, selection, inserstion
+		- Recursive Sorts:  Quick sort, Merge sort
+		- Compare and contrast
+- Trees
+	- Tree vocabulary (e.g. leaf, parent, child, subtree, root, left subtree, right subtree, 
+- Binary Trees
+	- Recall our binary tree exercises
+	- Exhaustive search through traversal
+	- Counting of the nodes
+	- Traversal orders:  Pre, in, and post
+	- In order traversal
+	- Pre order traversal
+	- Post order traversal
+- Binary Search Trees 
+	- Rules for adding values
+	- Consequences of those rules (e.g. where the min value?)
+	- Predicatable path to the minimum value or maximum value
+	- Be competent in adding, searching, and removing from a Binary Search Tree
+	- Two templated types within a data structure
+- Heaps
+	- Min heaps (and Max heaps, it's just a < vs > in terms of implementation)
+	- Add to a heap (upheaping)
+	- Remove from a heap (downheaping)
+	- Array based implementation of array heaps
+	- Recall index formulas for parent and child
+
+Notes
+- Boardworks, here is a problem and write code to solve that problem
+- Stack First in last out
+- Queues are Last in last out
+- Bubble sort or selection sort
+- Built alot of data structures
+- I'm not going to make you code remove from scratch on the final
+- Almost every exam question is in a modification of a boardwork
+- Make sure to glance over a boardworks and past material covered
+
+
+
+
+
+
+
+
+
+
+
+
+

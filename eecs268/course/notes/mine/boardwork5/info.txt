@@ -1,0 +1,22 @@
+Boardwork4 Instructions
+
+1.  	Define a Triangle class that implements the shape interface.
+	/You will make the triangle.h and triangle.cpp file
+	/Triangles have a base and height
+	The required area method 
+		/Declare our area method
+	and a constructor that takes a base and height.
+		/Declare constructor
+
+2.	Assume you are in main.cpp
+	Define a function that takes an array of Shape pointers and its size
+	You will return a pointer to the shape with the largest area
+	
+	(main only deals with an array of shape pointers of type shape)
+	
+	//shape pointer
+
+	Shapes* ptrShapesArr = new shapesArr[SIZE];
+
+	This pointers can point to individual shapes
+	

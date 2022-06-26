@@ -1,0 +1,17 @@
+4SharX11
+8165840091
+3166836509
+What is meant by a ‘type’ of certificate?
+Certificates can be created for specific purposes, such as signing, encrypting, authentication, etc. For example, S/MIME (Secure Multi-Purpose Internet Mail Extensions) certificates are used for signing and encrypting emails, SSL (Secure Sockets Layer) certificates are used for web-based authentication, VPN (Virtual Private Network) certificates are used for protecting communication from one computer to another on a network.
+
+What is a custom certificate type?
+When choosing to create a custom certificate, you can specify a file (template) that determines the exact makeup of the certificate. You can create your own template by using the Certificate Assistant to create a Certificate Authority (CA). The template is available once the CA is created. A Certificate Assistant template is a file with the extension “.certAuthorityConfig” and is located in “~/Library/Application Support/Certificate Authority/”.
+
+What is meant by “Let me override defaults”?
+Defaults are predetermined values for a new digital identity that are already assumed by the Certificate Assistant. You can override the defaults by further specifying your own to create your own custom identity.
+
+What is a self-signed root certificate?
+A self-signed root certificate is a root certificate authority that someone makes for immediate use as a certificate. Such certificates do not benefit from the security of certificate chains and certificate policies. Most computers will not accept a self-signed certificate unless their owner first tells them to, and some computers will not accept them under any circumstances. They are however easy and quick to make, and are often used for testing purposes in place of certificates signed by proper certificate authorities.
+
+What is a leaf certificate?
+A leaf is a certificate signed by an intermediate or root Certificate Authority. A leaf certificate benefits from the security of certificate chains and certificate policies. A leaf is situated at the bottom of a certificate chain.

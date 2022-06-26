@@ -1,0 +1,94 @@
+Boardword
+
+template <typename T>
+
+template <typename T>
+class BinaryTree {
+    private:
+    BNode<T>* m_root;
+        
+    //Assume BNode have getters & setters for
+    //entry, left, and right pointers
+        
+    bool recIsInTree(T entry, BNode<T>* curNode) const;
+    
+    public:
+    
+    //sets m_root to nullptr
+    BinaryTree();
+    
+    //Assume this is defined
+    void add(T entry);
+    
+    bool isInTree(T entry) const;
+    
+    //counts the occurence of entry in the tree
+    int count(T entry) const;
+
+}
+
+bool BinaryTree<T>::recIsInTree(T entry, BNode<T>* curNode)
+
+
+int recCount(T entry, BNode<T>* curNode) const {
+
+}
+
+
+template <typename T>
+int BinaryTree<T>::recCount(T entry, BNode<T>* curNode) const
+{
+	if (curNode == nullptr)
+	{
+		return (0);
+	}
+	else if (curNode->getEntry()==entry)
+{
+	//some kind of count ++
+	//return (1);
+	int leftrecCount(entry, curNode->getLeft());
+	Int rightrecCount(entry, curNode->getRight());
+	return(1+leftrecCount + rightrecCount);
+} else 
+{
+int leftrecCount(entry, curNode->getLeft());
+	int rightrecCount(entry, curNode->getRight());
+	return(leftrecCount + rightrecCount);
+}
+
+}
+
+
+
+
+
+
+
+
+template <typename T> 
+int BinaryTree<T>::count(T entry) const
+{
+return(recCount(entry, m_root));
+}  
+
+template <typename T> 
+int BinaryTree<T>::leftRecCount(T entry,BNode<T>* curNode) const
+{
+if (curNode->getEntry()==entry)
+{
+	//some kind of count ++
+	//return (1);
+return(1+leftrecCount + rightrecCount);
+}
+
+}  
+template <typename T> 
+int BinaryTree<T>::rightRecCount(T entry,BNode<T>* curNode) const
+{
+if (curNode->getEntry()==entry)
+{
+	//some kind of count ++
+	//return (1);
+return(1+leftrecCount + rightrecCount);
+}
+}  

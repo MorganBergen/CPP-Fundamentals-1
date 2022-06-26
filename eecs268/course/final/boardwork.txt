@@ -1,0 +1,13 @@
+
+Boardwork
+1.  Define a recursive pow(int base, int exp).  Returns base^exp.  Assume good input
+2.  What is the space complexity of your solution
+
+
+
+int pow(int base, int exp) {
+
+	 if (base == 0){
+		
+	
+}

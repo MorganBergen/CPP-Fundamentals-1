@@ -1,0 +1,81 @@
+lab2 information
+
+file sequence of code
+
+makefile        input.txt
+↓               ↓
+main.cpp    →   Executive.h     →   ShapeContainer.h
+                Executive.cpp       ShapeContainer.cpp
+                                    ↓
+                                    Shapes.h
+                    ↓⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻↓⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻↓
+                    Rectangle.h     Circle.h        Triangle.h
+                    Rectangle.cpp   Circle.cpp      Triangle.cpp
+
+inheritance structure:
+Shapes.h
+Triangle.h
+Triangle.cpp
+Rectangle.h
+Rectangle.cpp
+Circle.h
+Circle.cpp
+
+instructions
+
+objective:
+    make a shape container which stores the shapes(Circle, Rectangle, and Triangle).
+    you can add, remove, and print them
+
+what is given:
+    you have been given input.txt and a shapeinterface on the wiki page
+
+procedure:
+    now you have to think, how can you represent the shape?
+    you have to use shape interface, "shape.h", which is given.
+    shape interface consists of the names of the method
+    it does not include any constructor and definition of functions
+
+Shape.h class:
+    Shape.h contains three methods
+    area() - pure virutal
+    ShapeName() - pure virutal
+    Destructor
+
+    - you have to implement pure virtual functions of interface in the inherited class
+    - the parent class is shape.h
+    - the child classes are triangle, circle, and rectangle
+
+Triange class, Circle class, Rectangle class;
+    here you have to create the three classes for three different Shapes
+    the three classes will inherit the properities from the Shape interface.
+
+    1.  Triangle(Base, Height)
+    2.  Circle(Radius)
+    3.  Rectangle(Length, Height)
+
+    - you have to implement the Area() and ShapeName() functions for all these three classes
+    - the methods of the shape interface are all pure virtual functions
+    - you have to over-ride those functions according to the functionality of a particular shape
+    - for example, Area() function of the Triangle would be different from the Area() function of Rectangle and Circle.
+
+ShapeContainer class
+    now you also have been given ShapeContainer.h file
+    you have to create ShapeContainer.cpp, which implement the ShapeContainer.h functions
+    
+    - ShapeContainer class will be responsible for:
+        - creating the array of shape pointers
+        - adding the shape
+        - removing the shape
+        - returning the area 
+        - returning the shape name according to the index
+
+Executive class
+    
+    - Executive class will be responsible for
+        - reading from the input.txt file
+        - it will create the ShapeContainer object of given size
+        - reading the command from the file
+        - creating the particular shape object(Circle, Rectangle, or Triangle) according to given command.
+
+You will also require to handle the exception when the index is out of bounds or you encounter nullptr

@@ -1,0 +1,36 @@
+  When we encounter left parenthesis we push
+When we encounter right parenthesis we pop
+
+Example Output:
+
+Text #1:  New stack is empty: PASSED
+Test #2:  Push on empty stack means it non-empty:  PASSES
+Test #3:  Popping all elements makes stack empty:  PASSES
+Test #4:  Copy Constructor copies all elements in correct order:  PASSES
+Test #5:  Pushing an element after all elements have been popped makes the stack non-empty again:  PASSES
+Test #6:  Popping all elements in two different instances still makes the stack empty:  PASSES
+Test #7:  Popping an empty stack will not change the stack:  PASSED
+Test #8:  Pushing multiple elements on a stack and peeking at that stack will always return the last element pushed:   PASSED
+
+
+Test 1, 2, 3, 7
+
+
+Test OUTPUT
+An input file will test the user for the sequence
+
+Sample Output:
+
+./ -p
+
+Enter your sequence:  {{{}}
+Sequence is not balanced
+
+./ -p
+
+Enter your sequence
+
+
+parse
+
+You dont need to have templates in your program
