@@ -73,6 +73,7 @@ void run();
 
 int main() {
     
+	std::cout << "start program?" << std::endl;
     run();
     
     return (0);
